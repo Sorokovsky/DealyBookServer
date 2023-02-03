@@ -22,7 +22,7 @@ export class UsersService {
             if(!this.fileService.checkMimetype(avatar, new RegExp("image/*"))) throw new Error("Avatar have to be a image");
             const avatarPath:string = path.join(`${user._id}`);
             await this.fileService.upload(avatar, avatarPath, avatar.fieldname);
-            user.avatar = path.join(avatarPath, avatar.fieldname);
+            user.avatar = path.join(avatarPath, `${avatar.fieldname}.${this.fileService.getFileExt(avatar)}`);
             await user.save()
             return user;
         } catch (error) {
