@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
-import { FileInterceptor } from "@nestjs/platform-express";
+import { Body, Controller, Delete, Get, Param, Post, UseInterceptors } from "@nestjs/common";
+import { FileInterceptor, UploadedFile, MemoryStorageFile } from '@blazity/nest-file-fastify';
 import { CreateUserDto } from "src/dto/users/create-user.dto";
 import { User } from "src/schemas/user.schema";
 import { UsersService } from "./users.service";
@@ -10,9 +10,13 @@ export class UsersController{
     getAll():Promise<User[]>{
         return this.usersService.getAll();
     }
+    @Get("/:id")
+    getOne(@Param("id") id:string):Promise<User>{
+        return this.usersService.getOne(id);
+    }
     @Post()
-    @UseInterceptors(FileInterceptor("avatar"))
-    create(@Body() createUserDto:CreateUserDto, @UploadedFile() avatar:Express.Multer.File):Promise<User>{
+    @UseInterceptors(FileInterceptor('avatar'))
+    create(@Body() createUserDto:CreateUserDto, @UploadedFile() avatar:MemoryStorageFile):Promise<User>{
         return this.usersService.create(createUserDto, avatar);
     }
     @Delete("/:id")
