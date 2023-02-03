@@ -10,4 +10,4 @@ export class FoldersService{
     async delete(id: string){
         return id;
     }
-}
+};

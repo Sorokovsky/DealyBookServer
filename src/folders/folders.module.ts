@@ -5,4 +5,4 @@ import { FoldersService } from "./folders.service";
     controllers: [FoldersController],
     providers: [FoldersService]
 })
-export class FoldersModule{}
+export class FoldersModule{};
