@@ -11,6 +11,9 @@ import { UsersModule } from './users/users.module';
     FoldersModule, 
     ConfigModule.forRoot(), 
     FileModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, 'static'),
+    }),
     UsersModule,
     MongooseModule.forRootAsync({useFactory: () => ({uri: process.env.DB_LINK})}), 
   ],

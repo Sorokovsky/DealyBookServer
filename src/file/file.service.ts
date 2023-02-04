@@ -23,15 +23,6 @@ export class FileService {
             throw new Error(error.message);
         }
     }
-    async get(path:string):Promise<Buffer>{
-        try {
-            const filePath:string = nodePath.join(this.staticFolder, path);
-            const file:Buffer = await readFile(filePath, {});
-            return file;
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    }
     getFileExt(file:MemoryStorageFile):string{
         return file.mimetype.split("/")[1].split("+")[0];
     }
