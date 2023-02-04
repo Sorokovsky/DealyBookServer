@@ -17,8 +17,6 @@ export class AuthorizationController{
     }
     @Post("/login")
     login(@Body() loginUserDto:LoginUserDto):Promise<string>{
-        console.log(loginUserDto);
-        
         return this.authorizationService.login(loginUserDto);
     }
 };
