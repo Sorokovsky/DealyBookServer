@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
 import { FileModule } from "src/file/file.module";
 import { FileService } from "src/file/file.service";
@@ -8,6 +9,6 @@ import { UsersService } from "./users.service";
 @Module({
     controllers: [UsersController],
     providers: [UsersService, FileService],
-    imports: [MongooseModule.forFeature([{name: User.name, schema: UserSchema}]), FileModule]
+    imports: [MongooseModule.forFeature([{name: User.name, schema: UserSchema}]), FileModule, ConfigModule]
 })
 export class UsersModule{};

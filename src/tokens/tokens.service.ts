@@ -10,11 +10,8 @@ export class TokensService {
     private generate<T extends object>(payload:T, expiresIn:string | number):string{
         return sign(payload, this.secretKey, {expiresIn: expiresIn});
     }
-    generateRefreshToken<T extends object>(payload:T):string{
-        return this.generate(payload, '30d');
-    }
     generateAccessToken<T extends object>(payload:T):string{
-        return this.generate(payload, '15m');
+        return this.generate(payload, '30d');
     }
     verifyToken(token: string):JwtPayload | string{
         return verify(token, this.secretKey);
