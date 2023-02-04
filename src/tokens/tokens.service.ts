@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtPayload, sign, verify } from 'jsonwebtoken';
 @Injectable()
-export class TokenService {
+export class TokensService {
     private secretKey:string;
     constructor(private config: ConfigService){
         this.secretKey = config.get<string>("SECRET_KEY");
