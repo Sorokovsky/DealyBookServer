@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Folder } from './folder.schema';
 export type UserDocument = HydratedDocument<User>;
 @Schema()
 export class User {
@@ -15,6 +17,8 @@ export class User {
   nickname: string;
   @Prop()
   avatar: string;
+  @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Folder'}]})
+  folders: Folder[]
 };
 
 export const UserSchema = SchemaFactory.createForClass(User);
