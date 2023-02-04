@@ -5,12 +5,14 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { FileModule } from './file/file.module';
 import { FoldersModule } from './folders/folders.module';
+import { TokensModule } from './tokens/tokens.module';
 import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     FoldersModule, 
     ConfigModule.forRoot(), 
     FileModule,
+    TokensModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, 'static'),
     }),
