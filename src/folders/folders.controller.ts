@@ -1,10 +1,11 @@
 import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Folder } from "src/schemas/folder.schema";
 import { FoldersService } from "./folders.service";
 @Controller("/folders")
 export class FoldersController{
     constructor(private foldersService:FoldersService){};
     @Get("/:userId")
-    getAllByUser(@Param('userId') userId:string):Promise<string>{
+    getAllByUser(@Param('userId') userId:string):Promise<Folder[]>{
         return this.foldersService.getAllByUser(userId);
     }
     @Post("/new/:userId")
