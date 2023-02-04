@@ -3,12 +3,14 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { AuthorizationModule } from './authorization/authorization.module';
 import { FileModule } from './file/file.module';
 import { FoldersModule } from './folders/folders.module';
 import { TokensModule } from './tokens/tokens.module';
 import { UsersModule } from './users/users.module';
 @Module({
   imports: [
+    AuthorizationModule,
     FoldersModule, 
     ConfigModule.forRoot(), 
     FileModule,
