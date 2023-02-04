@@ -13,7 +13,7 @@ export class TokensService {
     generateRefreshToken<T extends object>(payload:T):string{
         return this.generate(payload, '30d');
     }
-    generateAccesToken<T extends object>(payload:T):string{
+    generateAccessToken<T extends object>(payload:T):string{
         return this.generate(payload, '15m');
     }
     verifyToken(token: string):JwtPayload | string{
