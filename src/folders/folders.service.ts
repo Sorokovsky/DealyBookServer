@@ -28,7 +28,11 @@ export class FoldersService{
         }
     }
     async update(id:string, updateFolderDto:UpdateFolderDto):Promise<FolderDocument>{
-        return await this.foldersModel.findByIdAndUpdate(id, updateFolderDto);
+        try {
+            return await this.foldersModel.findByIdAndUpdate(id, updateFolderDto);
+        } catch (error) {
+            throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+        }
     }
     async delete(id: string){
         try {
