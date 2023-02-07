@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CreateFolderDto } from "src/dto/folders/create-folder.dto";
+import { GetFolderDto } from "src/dto/folders/get-folder.dto";
 import { UpdateFolderDto } from "src/dto/folders/update-folder.dto";
 import { Folder } from "src/schemas/folder.schema";
 import { FoldersService } from "./folders.service";
