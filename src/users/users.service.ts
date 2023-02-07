@@ -17,13 +17,13 @@ export class UsersService {
     }
     async getByOptions(options:GetUserDto){
         try {
-            return await this.userModel.findOne(options).populate("folder");
+            return await this.userModel.findOne(options).populate("folders").exec();
         } catch (error) {
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
     }
     async getOne(id:string):Promise<UserDocument>{
-        return await this.userModel.findById(id).populate("folder");
+        return await this.userModel.findById(id).populate("folders").exec();
     }
     async create(createUserDto:CreateUserDto, avatar:MemoryStorageFile):Promise<UserDocument>{
         const salt:number = +this.config.get<number>("SALT");
