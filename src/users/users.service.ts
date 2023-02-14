@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
+import { InjectModel } from "@nestjs/mongoose"; 
 import * as path from "path";
 import { Model } from 'mongoose';
 import { CreateUserDto } from "src/dto/users/create-user.dto";
@@ -8,14 +8,13 @@ import { MemoryStorageFile } from "@blazity/nest-file-fastify";
 import { FileService } from "src/file/file.service";
 import { hash, compare } from 'bcrypt';
 import { ConfigService } from "@nestjs/config";
-import { GetUserDto } from "src/dto/users/get-user.dto";
 @Injectable()
 export class UsersService {
     constructor(@InjectModel(User.name) private userModel:Model<UserDocument>, private fileService: FileService, private config:ConfigService){};
     async getAll():Promise<UserDocument[]>{
         return await this.userModel.find();
     }
-    async getByOptions(options:GetUserDto){
+    async getByOptions(options:User){
         try {
             return await this.userModel.findOne(options).populate("folders").exec();
         } catch (error) {

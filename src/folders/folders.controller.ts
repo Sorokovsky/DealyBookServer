@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CreateFolderDto } from "src/dto/folders/create-folder.dto";
-import { GetFolderDto } from "src/dto/folders/get-folder.dto";
 import { UpdateFolderDto } from "src/dto/folders/update-folder.dto";
-import { Folder } from "src/schemas/folder.schema";
+import { Folder, FolderDocument } from "src/schemas/folder.schema";
 import { FoldersService } from "./folders.service";
 @Controller("/folders")
 export class FoldersController{
@@ -12,7 +11,7 @@ export class FoldersController{
         return this.foldersService.getAllByUser(userId);
     }
     @Post("/:userId")
-    create(@Param("userId") userId:string, @Body() createFolderDto:CreateFolderDto):Promise<Folder>{
+    create(@Param("userId") userId:string, @Body() createFolderDto:CreateFolderDto):Promise<FolderDocument>{
         return this.foldersService.create(userId, createFolderDto);
     }
     @Delete("/:id")
@@ -20,7 +19,7 @@ export class FoldersController{
         return this.foldersService.delete(id);
     }
     @Put("/:id")
-    update(@Param('id') id:string, @Body() updateFolderDto:UpdateFolderDto):Promise<Folder>{
+    update(@Param('id') id:string, @Body() updateFolderDto:UpdateFolderDto):Promise<FolderDocument>{
         return this.foldersService.update(id, updateFolderDto);
     }
 };

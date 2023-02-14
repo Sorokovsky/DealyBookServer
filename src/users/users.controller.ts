@@ -2,25 +2,25 @@ import { Body, Controller, Delete, Get, Param, Post, UseInterceptors } from "@ne
 import { FileInterceptor, UploadedFile, MemoryStorageFile } from '@blazity/nest-file-fastify';
 import { CreateUserDto } from "src/dto/users/create-user.dto";
 import { UsersService } from "./users.service";
-import { GetUserDto } from "src/dto/users/get-user.dto";
+import { UserDocument } from "src/schemas/user.schema";
 @Controller("/users")
 export class UsersController{
     constructor(private usersService:UsersService){};
     @Get()
-    getAll():Promise<GetUserDto[]>{
+    getAll():Promise<UserDocument[]>{
         return this.usersService.getAll();
     }
     @Get("/:id")
-    getOne(@Param("id") id:string):Promise<GetUserDto>{
+    getOne(@Param("id") id:string):Promise<UserDocument>{
         return this.usersService.getOne(id);
     }
     @Post()
     @UseInterceptors(FileInterceptor('avatar'))
-    create(@Body() createUserDto:CreateUserDto, @UploadedFile() avatar:MemoryStorageFile):Promise<GetUserDto>{
+    create(@Body() createUserDto:CreateUserDto, @UploadedFile() avatar:MemoryStorageFile):Promise<UserDocument>{
         return this.usersService.create(createUserDto, avatar);
     }
     @Delete("/:id")
-    delete(@Param('id') id:string):Promise<GetUserDto>{
+    delete(@Param('id') id:string):Promise<UserDocument>{
         return this.usersService.delete(id);
     }
 };
